@@ -1,1 +1,28 @@
-<p>add-person works!</p>
+<div class="container">
+    <div class="jumbotron text-center">
+        <h1><button class="btn btn-primary" routerLink="/list-person">Voltar</button> Adicionar Pessoa</h1>
+    </div>
+
+    <form name="form" #personForm="ngForm" (ngSubmit)="submit(personForm)" novalidate="false">
+        <div class="input-group mb-3">
+            <input required type="text" name="name" class="form-control" placeholder="Nome" [(ngModel)]="person.name">
+            <input required type="text" name="cpf" class="form-control" placeholder="CPF" [(ngModel)]="person.cpf">
+            <input required type="text" name="email" class="form-control" placeholder="E-mail"
+                [(ngModel)]="person.email">
+        </div>
+        <div class="input-group mb-3">
+            <input required type="text" name="phone" class="form-control" placeholder="Telefone"
+                [(ngModel)]="person.phone">
+            <input required type="text" name="cep" class="form-control" placeholder="CEP" [(ngModel)]="person.cep">
+            <input required type="text" name="state" class="form-control" placeholder="Estado"
+                [(ngModel)]="person.state">
+        </div>
+        <div class="input-group mb-3">
+            <input required type="text" name="city" class="form-control" placeholder="Cidade" [(ngModel)]="person.city">
+            <input required type="text" name="street" class="form-control" placeholder="Rua"
+                [(ngModel)]="person.street">
+        </div>
+        <button [disabled]="!personForm.valid" type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>

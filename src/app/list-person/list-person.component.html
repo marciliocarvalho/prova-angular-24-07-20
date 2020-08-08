@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="persons" *ngIf="!selectedPerson">
+<!-- <table mat-table [dataSource]="persons" *ngIf="!selectedPerson">
     <tr mat-header-row *matHeaderRowDef="columns"></tr>
     <tr mat-row *matRowDef="let myRowData; columns: columns"></tr>
     <ng-container matColumnDef="name">
@@ -40,4 +40,48 @@
             <p class="action" (click)="deletePerson(person)">Remover</p>
         </td>
     </ng-container>
-</table>
+</table> -->
+<div class="container">
+    <div class="jumbotron text-center">
+        <h1>Lista de Pessoas <button routerLink="/add-person" class="btn btn-success">+</button></h1>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>Telefone</th>
+                            <th>E-mail</th>
+                            <th>CEP</th>
+                            <th>Estado</th>
+                            <th>Cidade</th>
+                            <th>Rua</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let person of persons">
+                            <td>{{ person.name }}</td>
+                            <td>{{ person.cpf }}</td>
+                            <td>{{ person.phone }}</td>
+                            <td>{{ person.email }}</td>
+                            <td>{{ person.cep }}</td>
+                            <td>{{ person.state }}</td>
+                            <td>{{ person.city }}</td>
+                            <td>{{ person.street }}</td>
+                            <td>
+                                <div class="d-flex">
+                                    <a class="action mr-1" (click)="editPerson(person)">Editar</a> 
+                                    <a class="action" (click)="deletePerson(person)">Remover</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
