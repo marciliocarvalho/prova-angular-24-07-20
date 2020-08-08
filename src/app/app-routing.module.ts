@@ -7,7 +7,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
     {
         path: '',
-        component: AppComponent
+        redirectTo: 'list-person',
+        pathMatch: 'full'
     },
     {
         path: 'list-person',
@@ -16,6 +17,11 @@ const routes: Routes = [
     {
         path: 'add-person',
         component: AddPersonComponent,
+    },
+    {
+        path: '**',
+        redirectTo: 'list-person',
+        pathMatch: 'full'
     }
 ];
 @NgModule({
