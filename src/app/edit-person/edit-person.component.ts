@@ -12,7 +12,7 @@ import { Person } from '../models/person.model';
 })
 export class EditPersonComponent implements OnInit {
 
-  cpf: string;
+  id: string;
   person: Person;
   loading: boolean;
 
@@ -23,9 +23,19 @@ export class EditPersonComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.cpf = this.route.snapshot.paramMap.get('cpf');
-    this.getPerson();
-    console.log(this.person);
+
+    this.route.params.subscribe(params => {
+
+      this.id = params.id;
+
+      this.getPerson();
+
+      if (this.id !== this.person.id) {
+        alert()
+      }
+    });
+
+
   }
 
   submit(form) {
@@ -44,7 +54,14 @@ export class EditPersonComponent implements OnInit {
 
   getPerson() {
     this.person = (JSON.parse(localStorage.getItem(PERSONS)) as Person[])
-      .find(x => x.cpf === this.cpf);
+      .find(x => x.id === this.id);
+
+      if (typeof this.person === 'undefined') {
+        alert('Pessoa não encontrada');
+        this.router.navigate(['list-person']);
+        return;
+      }
+
   }
 
   changeCep(event) {

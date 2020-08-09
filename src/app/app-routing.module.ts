@@ -20,7 +20,7 @@ const routes: Routes = [
         component: AddPersonComponent,
     },
     {
-        path: 'edit-person/:cpf',
+        path: 'edit-person/:id',
         component: EditPersonComponent,
     },
     {

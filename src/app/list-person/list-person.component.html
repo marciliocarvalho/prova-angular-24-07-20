@@ -52,6 +52,7 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Nome</th>
                             <th>CPF</th>
                             <th>Telefone</th>
@@ -65,6 +66,7 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let person of persons">
+                            <td>{{ person.id }}</td>
                             <td>{{ person.name }}</td>
                             <td>{{ person.cpf }}</td>
                             <td>{{ person.phone }}</td>
