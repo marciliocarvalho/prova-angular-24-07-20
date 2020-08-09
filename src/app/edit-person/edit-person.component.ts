@@ -1,49 +1,50 @@
 import { CepService } from './../cep.service';
 import { PERSONS } from './../models/constants';
-
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Route } from '@angular/compiler/src/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Person } from '../models/person.model';
-import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-add-person',
-  templateUrl: './add-person.component.html',
-  styleUrls: ['./add-person.component.scss']
+  selector: 'app-edit-person',
+  templateUrl: './edit-person.component.html',
+  styleUrls: ['./edit-person.component.scss']
 })
-export class AddPersonComponent implements OnInit {
+export class EditPersonComponent implements OnInit {
 
-  person: Person = {
-    name: '',
-    cep: '',
-    city: '',
-    cpf: '',
-    email: '',
-    phone: '',
-    state: '',
-    street: ''
-  }
-
+  cpf: string;
+  person: Person;
   loading: boolean;
 
   constructor(
-    private router: Router,
-    private cep: CepService
+    private route: ActivatedRoute,
+    private cep: CepService,
+    private router: Router
   ) { }
 
   ngOnInit() {
+    this.cpf = this.route.snapshot.paramMap.get('cpf');
+    this.getPerson();
+    console.log(this.person);
   }
 
   submit(form) {
+    this.loading = true;
     var persons: Person[] = JSON.parse(localStorage.getItem(PERSONS));
-    if (persons.find(x => x.cpf === this.person.cpf)) {
-      alert('Esse CPF já está cadastrado');
-      return;
-    }
-    persons.push(this.person);
+    var index = persons.findIndex(x => x.cpf === this.person.cpf);
+
+    persons[index] = this.person;
+
     localStorage.setItem(PERSONS, JSON.stringify(persons));
-    alert('Pessoa inserida com sucesso');
-    this.router.navigate(['list-person']);
+
+    alert('Pessoa atualizada com sucesso');
+
+    this.router.navigate(['/list-person'])
+  }
+
+  getPerson() {
+    this.person = (JSON.parse(localStorage.getItem(PERSONS)) as Person[])
+      .find(x => x.cpf === this.cpf);
   }
 
   changeCep(event) {

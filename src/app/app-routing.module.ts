@@ -3,6 +3,7 @@ import { AddPersonComponent } from './add-person/add-person.component';
 import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { EditPersonComponent } from './edit-person/edit-person.component';
 
 const routes: Routes = [
     {
@@ -17,6 +18,10 @@ const routes: Routes = [
     {
         path: 'add-person',
         component: AddPersonComponent,
+    },
+    {
+        path: 'edit-person/:cpf',
+        component: EditPersonComponent,
     },
     {
         path: '**',

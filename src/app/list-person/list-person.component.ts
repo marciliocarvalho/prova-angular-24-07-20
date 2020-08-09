@@ -1,3 +1,4 @@
+import { PERSONS } from './../models/constants';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
@@ -11,18 +12,7 @@ import { Person } from '../models/person.model';
 })
 export class ListPersonComponent implements OnInit {
 
-  persons: Person[] = [
-    {
-      name: 'Marcilio',
-      cpf: '08147699425',
-      email: 'marcilioc108@gmail.com',
-      phone: '81997248632',
-      cep: '55024210',
-      state: 'PE',
-      city: 'Caruaru',
-      street: 'Rua Barão de Itamaracá'
-    }
-  ];
+  persons: Person[] = [ ];
   // columns = ['name', 'cpf', 'phone', 'email', 'cep', 'state', 'city', 'street', 'actions'];
   // selectedPerson;
 
@@ -31,10 +21,11 @@ export class ListPersonComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getPersons();
   }
 
-  editPerson(person) {
-    this.router.navigate(['edit-person'])
+  editPerson(person: Person) {
+    this.router.navigate(['edit-person', person.cpf])
   }
 
   deletePerson(person) {
@@ -46,11 +37,17 @@ export class ListPersonComponent implements OnInit {
     return localStorage.getItem('persons');
   }
 
-  remove(person) {
-    var persons = JSON.parse(localStorage.getItem('persons'));
-    var cpf = Number(person.cpf);
-    var index = persons.findIndex(foundPerson => foundPerson.cpf == String(cpf));
-    persons.splice(index, 1);
-    localStorage.setItem('persons', JSON.stringify(persons));
+  remove(person: Person) {
+    var persons : Person[] = JSON.parse(localStorage.getItem('persons'));
+    persons = persons.filter(x => x.cpf !== person.cpf);
+    localStorage.setItem(PERSONS, JSON.stringify(persons));
+    // var cpf = Number(person.cpf);
+    // var index = persons.findIndex(foundPerson => foundPerson.cpf == String(cpf));
+    // persons.splice(index, 1);
+    // localStorage.setItem('persons', JSON.stringify(persons));
+  }
+
+  getPersons() {
+    this.persons = JSON.parse(localStorage.getItem(PERSONS));
   }
 }

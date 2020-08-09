@@ -11,12 +11,14 @@ import { FormsModule } from '@angular/forms';
 import { CepService } from './cep.service';
 import { AddPersonComponent } from './add-person/add-person.component';
 import { ListPersonComponent } from './list-person/list-person.component';
+import { EditPersonComponent } from './edit-person/edit-person.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		AddPersonComponent,
-		ListPersonComponent
+		ListPersonComponent,
+		EditPersonComponent
 	],
 	imports: [
 		BrowserModule,
