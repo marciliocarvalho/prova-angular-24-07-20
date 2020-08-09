@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class AddPersonComponent implements OnInit {
 
   person: Person = {
+    id: '',
     name: '',
     cep: '',
     city: '',
@@ -40,6 +41,7 @@ export class AddPersonComponent implements OnInit {
       alert('Esse CPF já está cadastrado');
       return;
     }
+    this.person.id = '_' + Math.random().toString(36).substr(2, 9);
     persons.push(this.person);
     localStorage.setItem(PERSONS, JSON.stringify(persons));
     alert('Pessoa inserida com sucesso');

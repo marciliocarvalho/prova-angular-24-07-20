@@ -25,7 +25,7 @@ export class ListPersonComponent implements OnInit {
   }
 
   editPerson(person: Person) {
-    this.router.navigate(['edit-person', person.cpf])
+    this.router.navigate(['edit-person', person.id])
   }
 
   deletePerson(person) {
