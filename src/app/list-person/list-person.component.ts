@@ -1,8 +1,8 @@
+import { Person } from './../models/person.model';
 import { PERSONS } from './../models/constants';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { Person } from '../models/person.model';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { Person } from '../models/person.model';
 })
 export class ListPersonComponent implements OnInit {
 
-  persons: Person[] = [ ];
+  persons: Person[] = [];
   // columns = ['name', 'cpf', 'phone', 'email', 'cep', 'state', 'city', 'street', 'actions'];
   // selectedPerson;
 
@@ -28,9 +28,12 @@ export class ListPersonComponent implements OnInit {
     this.router.navigate(['edit-person', person.id])
   }
 
-  deletePerson(person) {
-    this.remove(person);
-    this.persons = JSON.parse(this.get());
+  deletePerson(person: Person) {
+    if (confirm('Você deseja mesmo apagar ' + person.name + '?')) {
+      this.remove(person);
+      this.persons = JSON.parse(this.get());
+    }
+
   }
 
   get() {
@@ -38,7 +41,7 @@ export class ListPersonComponent implements OnInit {
   }
 
   remove(person: Person) {
-    var persons : Person[] = JSON.parse(localStorage.getItem('persons'));
+    var persons: Person[] = JSON.parse(localStorage.getItem('persons'));
     persons = persons.filter(x => x.cpf !== person.cpf);
     localStorage.setItem(PERSONS, JSON.stringify(persons));
     // var cpf = Number(person.cpf);

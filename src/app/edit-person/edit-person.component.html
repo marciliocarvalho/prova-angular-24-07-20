@@ -7,14 +7,14 @@
     <form name="form" #personForm="ngForm" (ngSubmit)="submit(personForm)" novalidate="false">
         <div class="input-group mb-3">
             <input required type="text" name="name" class="form-control" placeholder="Nome" [(ngModel)]="person.name">
-            <input disabled required type="text" name="cpf" class="form-control" placeholder="CPF" [(ngModel)]="person.cpf">
+            <input required type="number" name="cpf" class="form-control" placeholder="CPF" [(ngModel)]="person.cpf">
             <input required type="text" name="email" class="form-control" placeholder="E-mail"
                 [(ngModel)]="person.email">
         </div>
         <div class="input-group mb-3">
-            <input required type="text" name="phone" class="form-control" placeholder="Telefone"
+            <input required type="number" name="phone" class="form-control" placeholder="Telefone"
                 [(ngModel)]="person.phone">
-            <input (keyup)="changeCep($event)" required type="text" name="cep" class="form-control" placeholder="CEP" [(ngModel)]="person.cep">
+            <input (keyup)="changeCep($event)" required type="number" name="cep" class="form-control" placeholder="CEP" [(ngModel)]="person.cep">
             <input required type="text" name="state" class="form-control" placeholder="Estado"
                 [(ngModel)]="person.state">
         </div>

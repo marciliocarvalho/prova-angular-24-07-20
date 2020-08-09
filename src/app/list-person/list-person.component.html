@@ -52,7 +52,6 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Nome</th>
                             <th>CPF</th>
                             <th>Telefone</th>
@@ -66,7 +65,6 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let person of persons">
-                            <td>{{ person.id }}</td>
                             <td>{{ person.name }}</td>
                             <td>{{ person.cpf }}</td>
                             <td>{{ person.phone }}</td>
@@ -77,7 +75,7 @@
                             <td>{{ person.street }}</td>
                             <td>
                                 <div class="d-flex">
-                                    <a class="action mr-1" (click)="editPerson(person)">Editar</a> 
+                                    <a class="action mr-1" (click)="editPerson(person)">Editar</a>
                                     <a class="action" (click)="deletePerson(person)">Remover</a>
                                 </div>
                             </td>
