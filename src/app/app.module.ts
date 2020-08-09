@@ -1,3 +1,4 @@
+import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { NgModule } from '@angular/core';
@@ -8,14 +9,21 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { CepService } from './cep.service';
+import { AddPersonComponent } from './add-person/add-person.component';
+import { ListPersonComponent } from './list-person/list-person.component';
+import { EditPersonComponent } from './edit-person/edit-person.component';
 
 @NgModule({
 	declarations: [
-		AppComponent
+		AppComponent,
+		AddPersonComponent,
+		ListPersonComponent,
+		EditPersonComponent
 	],
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
+		AppRoutingModule,
 		FormsModule,
 		MatTableModule,
 		MatInputModule,
